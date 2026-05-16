@@ -1,16 +1,24 @@
-# ECG
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Pulsating Heart</title>
+  <title>Pulsating Heart with Particles</title>
   <style>
     body {
+      margin: 0;
+      height: 100vh;
+      background: #111;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
-      background: #111;
+      overflow: hidden;
+    }
+
+    #particles-js {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
     }
 
     .heart {
@@ -20,6 +28,8 @@
       background: red;
       transform: rotate(-45deg);
       animation: pulse 1s infinite;
+      z-index: 1;
+      box-shadow: 0 0 30px hotpink, 0 0 60px purple;
     }
 
     .heart::before,
@@ -50,6 +60,35 @@
   </style>
 </head>
 <body>
+  <!-- Particle background -->
+  <div id="particles-js"></div>
+
+  <!-- Heart -->
   <div class="heart"></div>
+
+  <!-- Background music -->
+  <audio autoplay loop>
+    <!-- Replace with your own MP3 file path -->
+    <source src="ocean-eyes.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Particle library -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+  <script>
+    particlesJS("particles-js", {
+      particles: {
+        number: { value: 80 },
+        size: { value: 3 },
+        move: { speed: 2 },
+        line_linked: { enable: false },
+        color: { value: "#ff69b4" }
+      },
+      interactivity: {
+        events: {
+          onhover: { enable: true, mode: "repulse" }
+        }
+      }
+    });
+  </script>
 </body>
 </html>
